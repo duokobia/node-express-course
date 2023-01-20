@@ -16,18 +16,17 @@ const app = express();
 app.use(express.static("./public"));
 
 // For the root
+// I can as well remove this code block since the static directory has an index.html file. This is just a duplicate!
 app.get("/", (req, res) => {
     // There is a res.sendFile method that comes with ExpressJS. This method requires an absolute path.
     // So we have to use the "path" module to get this path.
     // path.resolve or path.join can be used interchangeably in this case. 
-    res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
-    }
-);
-// All bad request, use this resource:
-app.all("*", () => {
-    res.status(404).send("resource not found");
-    }
-);
+    res.sendFile(path.resolve(__dirname, "./public/index.html"));
+});
+app.all("*", (req, res, next) => {
+    res.status(404).send("resource not found")
+    next()
+});
 
 app.listen(5000, () => {
     console.log("server is listening on port 5000...");

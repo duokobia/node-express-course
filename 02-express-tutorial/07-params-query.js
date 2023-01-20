@@ -69,12 +69,6 @@ app.get("/api/v1/query", (req, res) => {
 
     if (search) {
         sortedProducts = sortedProducts.filter((product) => {
-            //  We will get errors in the server console if we don't explicitly include "return" 
-            //  in our "if" statements, except it is the last statement in the "if" block. 
-            //  This is because JS will try to send two responses for the same request. 
-            //  It doesnt termnate the previous statement if "return" isn't used. 
-            //  Hence, JS try to send both the current response and the next response at the same time.
-            //  Meanwhile, in JS, you can only have one response per request. 
             return product.name.startsWith(search); 
         })
     }
