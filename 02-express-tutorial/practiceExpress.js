@@ -3,8 +3,10 @@ const path = require("path");           // Import path module.
 
 const app = express();                  // Invoke Express method.
 
+const consoleLog = require("./practice-middleware");
+
 // This allows Express to take care of the status codes, content type, file path, etc automatically for me.
-app.use(express.static("./new-public"));
+app.use([express.static("./new-public"), consoleLog]);
 
 // The code block below is unnecessary since the static directory has an index.html file.
 
