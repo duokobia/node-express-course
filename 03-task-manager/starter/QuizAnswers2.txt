@@ -1,0 +1,15 @@
+### 1 ####
+The middleware AsyncWrapper function was created to eliminate the repeated and reductant try/catch blocks set up for all my controllers.
+These try/catch blocks are the same. To keep my code clean and DRY, a better solution is to create a middleware function with the same 
+functionality, and then use it to wrap each controller.
+
+
+### 2 ####
+const getTask = asyncWrapper(async (req, res, next) => {
+  const { id: taskID } = req.params;
+  const task = await Task.findOne({ _id: taskID });
+  if (!task) {
+    return next(createCustomError("URL does not exits", 404));
+  }
+  res.status(200).json({ task });
+});
