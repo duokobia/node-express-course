@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('express-async-errors');
+const mainRouter = require("./routes/main");
 
 const express = require('express');
 const app = express();
@@ -9,7 +10,9 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 
 // middleware
 app.use(express.static('./public'));
-app.use(express.json());
+app.use(express.json()); // To access req.body in json format, use this package to parse
+
+app.use("/api/v1", mainRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
