@@ -1,0 +1,15 @@
+GET http://localhost:5000/
+
+###
+
+GET http://localhost:5000/api/v1/hello
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsInBhc3N3b3JkIjoiVGVzdDEyMyIsImlhdCI6MTY3NzY3NDQ2NywiZXhwIjoxNjc3NzYwODY3fQ.BkYnjQdpcwItyTJfKc344uFgxF2idzKvN2yWrB0RjmY
+###
+
+POST http://localhost:5000/api/v1/logon
+Content-Type: application/json
+
+{
+    "name": "john",
+    "password": "Test123"
+}
